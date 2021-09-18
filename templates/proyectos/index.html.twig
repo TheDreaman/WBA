@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proyectos{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>Proyectos</h1>
+
+    <div class="card ">
+        <div class="card-body">
+            <table class="table table-dark table-hover">
+                <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>ID(s) de usuario(s)</th>
+                </tr>
+                {% for proyecto in proyectos %}
+                    <tr>
+                        <td>{{ proyecto.titulo }}</td>
+                        <td>{{ proyecto.descripcion }}</td>
+                        <td>{{ proyecto.usuario.id ~ '- ' ~ proyecto.usuario.nombre }}</td>
+                    </tr>                    
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DEV Usuarios{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>DEV Usuarios</h1>
+        <div class="card-body">
+            <table class="table table-dark table-hover overflow-hidden">
+                <tr>
+                    <th>ID</th>
+                    <th>Bol o Mat</th>
+                    <th>Nombre(s)</th>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Email</th>
+                    <th>Celular</th>
+                    <th>Descripcion</th>
+                    <th>Estudios</th>
+                    <th>Academia</th>
+                    <th>Disponible</th>
+                    <th>Lugar de At</th>
+                    <th>Historial de P</th>
+                    <th>Datos visibles</th>
+                    <th>Foto</th>
+                    <th>Creado el</th>
+                    <th>Rol</th>
+                </tr>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{ usuario.id }}</td>
+                        <td>{{ usuario.bolMat }}</td>
+                        <td>{{ usuario.nombre }}</td>
+                        <td>{{ usuario.apePat }}</td>
+                        <td>{{ usuario.apeMat }}</td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{{ usuario.cel }}</td>
+                        <td>{{ usuario.descripcion }}</td>
+                        <td>{{ usuario.estudios }}</td>
+                        <td>{{ usuario.acadmy }}</td>
+                        <td>{{ usuario.disponible }}</td>
+                        <td>{{ usuario.lugarAt }}</td>
+                        <td>{{ usuario.proyectosHistory }}</td>
+                        <td>{{ usuario.dtVisibles }}</td>
+                        <td>{{ usuario.foto }}</td>
+                        <td>{{ usuario.fechaCreado |date('d-m-Y H-i') }}</td>
+                        <td>
+                            {% if usuario.rol == 'ROLE_USERA' %}
+                                Alumno
+                            {% elseif usuario.rol == 'ROLE_USERD'%}
+                                Docente
+                            {% elseif usuario.rol == 'ROLE_ADMIN' %}
+                                Admin
+                            {% else %}
+                                Sin Rol
+                            {% endif %}
+                        </td>
+                    </tr>                    
+                {% endfor %}
+            </table>
+        </div>
+</div>
+
+{% endblock %}

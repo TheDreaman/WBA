@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WBA ESIME CU{% endblock %}
+
+{% block body %}
+
+  {#   {% if not is_granted('ROLE_USER') %}
+        <a href="#">Delete</a>
+    {% endif %}
+     #}
+<div class="pb-3"></div>
+<div class="container-fluid px-4">  
+
+    <div class="row">
+        <div class="col-1 pb-2">
+            <img src="{{ asset('assets/images/esime.png') }}" style="width: 80px;" class="" alt="">
+        </div>
+        <div class="col-11 pl-0">
+            <h1 class="font-title">Sitio web para la busquedea de asesor <br>
+            en la carrera de Ingenieria en computación</h1>
+        </div>                      
+    </div>                            
+
+    
+    
+
+    {# {% for usuario in usuarios %}
+        <div class="row">
+            <div class="col-9">
+                
+            </div>
+            {% for i in 1..5 %}
+                {{ i ~ random_users}}
+            {% endfor %}
+        </div>
+        <a class="btn-link" type="" href="#">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}<br></a>
+    {% endfor %} #}
+    <div class="row">
+        <div class="col-9">
+            {% for usuario in usuarios %}
+                <div class="row pb-4"></div>
+                <div class="row rounded-lg shadow-sm">            
+                    <div class="col-2">
+                        <img src="{{ asset('assets/images/user.png') }}" style="width: 100px;" class="mx-4" alt="">  
+                    </div>
+                    <div class="col-10">
+                        <a class="font-weight-bold" href="{# {{ path('perfil', {'id':usuario.id}) }} #}#">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}</a>
+                        <p class="" style="font-size: 13px;">                               
+                            Doctorado en xxxxxxxx <br>
+                            Ultimo proyecto: yyyyyyyyyyyy</p>
+                    </div>
+                </div> 
+            {% endfor %}
+        </div>
+        <div class="col-3">
+            <div class="row">
+                <div class="col">
+                    {% for random in random_users|slice(1,4) %}
+                        <div class="p-2">
+                            <a href="#" class=""><img src="{{ asset('assets/images/user.png') }}" style="width: 30px;" class="" alt="">    {{ random.nombre ~ ' ' ~ random.apePat ~ ' ' ~ random.apeMat }}<br></a>
+                        </div>                        
+                        {# <a class="btn-link" type="" href="#">{{ random.nombre ~ ' ' ~ random.apePat ~ random.apeMat }}<br></a> #}
+                    {% endfor %}                
+                </div>
+            </div>        
+        </div>
+    </div>
+</div>
+
+{% endblock %}

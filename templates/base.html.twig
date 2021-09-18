@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}WBA ESIME CU{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('assets/CSS/style.css') }}" type="text/css">
+            <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" type="text/css">
+            
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
+
+        {% block javascripts %}
+            <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow">
+            <div class="container">                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('index') }}">
+                    <img src="{{ asset('assets/images/ipn.png') }}" alt="IPN logo" width="30" height="35">
+                    {# <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" "> #}
+                </a>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {# <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>              
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown link
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li> #}
+                    </ul>         
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="navbar-brand nav-link dropdown-toggle" href="#" role="button" id="" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="{{ asset('assets/images/esime.png') }}" class="rounded-circle" alt="esimeLogo" width="25" height="25">
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                {% if app.user %}
+                                    <li><label class="dropdown-item-text text-center" type="label">{{ app.user.nombre ~ ' ' ~ app.user.apePat }}</label></li>
+
+                                    {% if app.user.rol == 'ROLE_USERD' %}
+                                        <li><a class="dropdown-item" type="button" href="{{ path('perfil') }}">Perfil</a></li>
+                                        <li><a class="dropdown-item" type="button" href="{{ path('settings') }}">Configuracion</a></li>
+                                    {% endif %} 
+
+                                    {% if app.user.rol == 'ROLE_USERA' %}
+                                        <li><a class="dropdown-item" type="button" href="{{ path('mi_proyecto') }}">Mi proyecto</a></li>
+                                        <li><a class="dropdown-item" type="button" href="{{ path('settings') }}">Configuracion</a></li>
+                                    {% endif %}
+
+                                    {% if app.user.rol == 'ROLE_ADMIN' %}
+                                        <li><a class="dropdown-item" type="button" href="{{ path('dev_usuarios') }}">DEV USERS</a></li>
+                                        <li><a class="dropdown-item" type="button" href="{{ path('proyectos') }}">DEV PROYECTS</a></li>
+                                    {% endif %}
+                                    
+                                    <li><a class="dropdown-item" type="button" href="{{ path('logout') }}">Cerrar sesión</a></li>
+                                {% endif %}                        
+                            </ul>
+                        </li>
+                    </ul>               
+                </div>            
+            </div>
+        </nav>
+        {% block body %}{% endblock %}
+    </body>
+</html>

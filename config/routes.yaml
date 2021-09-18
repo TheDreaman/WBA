@@ -1,0 +1,50 @@
+login:
+    path: /login
+    controller: App\Controller\UsuariosController::login
+
+logout:
+    path: /logout
+
+index:
+    path: /
+    controller: App\Controller\HomeController::index
+
+proyectos:
+    path: /proyectos
+    controller: App\Controller\ProyectosController::index
+
+dev_usuarios:
+    path: /dev-usuarios
+    controller: App\Controller\ProyectosController::verUsuarios    
+
+crear_proyecto:
+    path: /crear-proyecto
+    controller: App\Controller\ProyectosController::crear
+
+mi_proyecto:
+    path: /mi-proyecto
+    controller: App\Controller\ProyectosController::miProyecto
+
+editar_proyecto:
+    path: /editar-proyecto/{id}
+    controller: App\Controller\ProyectosController::editarProyecto
+
+borrar_proyecto:
+    path: /borrar-proyecto/{id}
+    controller: App\Controller\ProyectosController::borrarProyecto    
+
+registro:
+    path: /registro
+    controller: App\Controller\UsuariosController::registro
+
+perfil:
+    path: /perfil
+    controller: App\Controller\PerfilController::perfil
+
+ver_perfil:
+    path: /perfil/{id}
+    controller: App\Controller\PerfilController::verPerfil
+
+settings:
+    path: /settings
+    controller: App\Controller\SettingsController::settings

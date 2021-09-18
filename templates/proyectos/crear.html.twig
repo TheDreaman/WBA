@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if edit is defined %}
+        Editar proyecto
+    {% else %}
+        Nuevo proyecto
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>
+    {% if edit is defined %}
+        Editar proyecto
+    {% else %}
+        Nuevo proyecto
+    {% endif %}
+    </h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

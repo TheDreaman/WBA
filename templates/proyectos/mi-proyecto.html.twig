@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mi Proyecto{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <h1>Mi proyecto</h1>
+    {% if proyecto|length == 0 %}
+        <h4>Aun no tienes un proyecto</h4>
+        <a class="" href="{{ path('crear_proyecto') }}">Nuevo proyecto!</a>
+    {% else %}
+        {% for pro in proyecto %}
+            <h4>{{ pro.titulo }}</h4>
+            <h4>{{ pro.descripcion }}</h4>
+            <a href="{{ path('editar_proyecto', {'id':pro.id}) }}">Editar proyecto</a>
+            {% if pro.usuario.id == app.user.id %}
+                <a href="{{ path('borrar_proyecto', {'id':pro.id}) }}">Borrar proyecto</a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}
