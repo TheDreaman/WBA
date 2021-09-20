@@ -1,0 +1,129 @@
+/*:root{
+  	--input-background: rgba(57, 63, 84, 0.8);
+	--input-text-inactive: #7881A1;
+	--input-text-active: #BFD2FF;
+}
+*/
+/*------------------Titulo----------------*/ 
+.font-title{
+	font-size: 25px !important; 
+}
+
+.imgLogo{
+	width: 250px;
+	height: 200px;
+}
+
+.cardLogin{
+	max-width: 550px;
+	height: 200px;
+}
+
+/*-----------------------Login---------------------*/
+.text-login-title{
+	margin-left: 10rem;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.text-login-input{
+	/*margin-left: 4rem;
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 15px;
+	font-weight: bold;*/
+	width: 100%;
+	height: 50px;
+	max-width: 200px;
+	position: relative;
+	overflow: hidden;
+	margin-left: 6rem;
+}
+
+.text-login-input input{
+	width: 100%;
+	height: 100%;
+	background: none;
+	color: #000;
+	padding-top: 20px;
+	border: none;
+	outline: 0px;
+}
+
+.text-login-input .text-login-label{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	border-bottom: 1px solid #c7c7c7;
+}
+
+.text-login-input .text-login-label:after{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 100%;
+	height: 100%;
+	border-bottom: 3px solid #00c57b;
+	transform: translateX(-100%);
+	transition: all 0.3s ease;
+}
+
+.text-login-span{
+	position: absolute;
+	bottom: 5px;
+	left: 0;
+	transition: all 0.3s ease;
+	color: #000;
+}
+
+.text-login-input input:focus + .text-login-label .text-login-span, 
+.text-login-input input:not(:placeholder-shown) + .text-login-label .text-login-span{
+	transform: translateY(-100%);
+	font-size: 14px;
+	color: #00c57b;
+}
+
+.text-login-input input:focus + .text-login-label:after,
+.text-login-input input:not(:placeholder-shown) + .text-login-label:after {
+	transform: translateX(0%);	
+}
+
+.wrap{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.item{
+	padding: 10px;
+}
+
+.btn-clear{
+	outline: none;
+	display: block;
+	border: solid 1px #00c57b;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1;
+	padding: 8px 20px;
+	border-radius: 30px;
+	background: #fff;
+	color: #00c57b;
+	cursor: pointer;
+	transition: all 0.3s linear;
+}
+
+.btn-clear:hover,
+.btn-clear:focus{
+	background: #00c57b;
+	color: #fff;
+}
+
+.btn-clear:active{
+	background: #fff;	
+}

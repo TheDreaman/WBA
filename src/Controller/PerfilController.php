@@ -3,41 +3,57 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Usuario;
+use App\Form\PerfilType;
 
 class PerfilController extends AbstractController
 {
-    public function perfil(): Response
-    {
-        return $this->render('perfil/index.html.twig', [
-            'controller_name' => 'PerfilController',
+    public function perfil(UserInterface $usuario)
+    {     
+
+        return $this->render('perfil/perfilPrivado.html.twig', [
+            'users' => $usuario,
         ]);
     }
 
-    public function verPerfil(Request $request, UserInterface $usuario, Proyecto $proyecto)
+    public function verPerfil(Request $request, Usuario $usuario)
     {
-        /*if (!$usuario || $usuario->getId() != $proyecto -> getUsuario() -> getId()) {
-            return $this -> redirectToRoute('mi_proyecto');
-        }*/
+        if (!$usuario) {
+            return $this -> redirectToRoute('index');
+        }
 
-        $form = $this -> createForm(ProyectoType::Class, $proyecto);
+        return $this -> render('perfil/perfilPrivado.html.twig', [
+            'users' => $usuario,
+        ]);
+    }
+
+    public function editarPerfil(Request $request, Usuario $user, UserInterface $usuario)
+    {        
+        if (!$usuario || $usuario->getId() != $user -> getId()) {
+            return $this -> redirectToRoute('perfil');
+        }
+
+        $form = $this -> createForm(PerfilType::Class, $user);
 
         $form -> handleRequest($request);
 
         if ($form -> isSubmitted() && $form -> isValid()) {
-            //$proyecto -> setUsuario($usuario);
 
             $em = $this ->  getDoctrine()->getManager();
-            $em -> persist($proyecto);
+            $em -> persist($user);
             $em -> flush();
 
             return $this -> redirect(
-                $this -> generateUrl('ver_perfil', ['id' => $proyecto -> getId()])
+                $this -> generateUrl('perfil')
             );
         }
 
-        return $this -> render('perfil/index.html.twig', [
+        return $this->render('perfil/perfilPrivado.html.twig', [
+            'users' => $user,
             'edit' => true,
             'form' => $form -> createView()
         ]);

@@ -33,9 +33,6 @@ class RegistroType extends AbstractType
 		-> add('email', EmailType::class, array(
 			'label' => 'Email Institucional'
 		))
-		-> add('cel', TextType::class, array(
-			'label' => 'Celular'
-		))
 		-> add('submit', SubmitType::class, array(
 			'label' => 'Registrar'
 		));

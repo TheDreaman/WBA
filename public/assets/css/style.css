@@ -1,5 +1,22 @@
 /*------------------Titulo----------------*/
-
+body{
+	background: red;
+}
+ 
 .font-title{
 	font-size: 25px !important; 
+	color: blueviolet;
+}
+
+.imgLogo{
+	max-width: 10%;
+	height: 10px;
+}
+
+.cardLogin{
+	max-width: 540px !important;
+}
+
+.prueba{
+	background-color: blue; 
 }

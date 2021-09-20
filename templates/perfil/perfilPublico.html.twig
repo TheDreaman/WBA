@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Perfil{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    
+
+    <h1>{{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}</h1>    
+    <h3>Foto</h3>
+
+    <h3>Email</h3>
+    <p>{{ users.email }}</p>
+    <h3>Celular</h3>
+    <p>{{ users.cel }}</p>
+    <h3>Descripcion</h3>
+    <p>{{ users.descripcion }}</p>
+    <h3>Estudios</h3>
+    <p>{{ users.estudios }}</p>
+    <h3>Academia</h3>
+    <p>{{ users.acadmy }}</p>
+    <h3>Disponibilidad</h3>
+    <p>{{ users.disponible }}</p>
+    <h3>Lugar de atención</h3>
+    <p>{{ users.lugarAt }}</p>
+    <h3>Proyectos anteriores</h3>
+    <p>{{ users.proyectosHistory }}</p>
+
+</div>
+
+
+{% endblock %}

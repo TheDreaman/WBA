@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {% if edit is defined %}
+        Editar perfil
+    {% else %}
+        Perfil
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+
+    <h1>
+    {% if edit is defined %}
+        {{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}
+    {% else %}
+        {{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}
+    {% endif %}    
+    </h1>
+
+    {% if form is defined %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% else %}
+        <h3>Foto</h3>
+        <h3>Email</h3>
+        <p>{{ users.email }}</p>
+        <h3>Celular</h3>
+        <p>{{ users.cel }}</p>
+        <h3>Descripcion</h3>
+        <p>{{ users.descripcion }}</p>
+        <h3>Estudios</h3>
+        <p>{{ users.estudios }}</p>
+        <h3>Academia</h3>
+        <p>{{ users.acadmy }}</p>
+        <h3>Disponibilidad</h3>
+        {% if users.disponible == true %}
+        <p>Disponible</p>
+        {% else %}
+        <p>No disponible</p>
+        {% endif %}
+        <h3>Lugar de atención</h3>
+        <p>{{ users.lugarAt }}</p>
+        <h3>Proyectos anteriores</h3>
+        <p>{{ users.proyectosHistory }}</p>    
+    {% endif %}
+    
+    {% if users.id == app.user.id and edit is not defined %}
+        <a href="{{ path('perfil_editar', {'id':users.id}) }}">Editar perfil</a>        
+    {% endif %}            
+
+</div>
+
+
+{% endblock %}

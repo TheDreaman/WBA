@@ -41,9 +41,13 @@ perfil:
     path: /perfil
     controller: App\Controller\PerfilController::perfil
 
-ver_perfil:
-    path: /perfil/{id}
+perfil_ver:
+    path: /ver-perfil/{id}
     controller: App\Controller\PerfilController::verPerfil
+
+perfil_editar:
+    path: /perfil-editar/{id}
+    controller: App\Controller\PerfilController::editarPerfil
 
 settings:
     path: /settings
