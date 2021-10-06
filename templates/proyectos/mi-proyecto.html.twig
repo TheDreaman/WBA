@@ -3,23 +3,40 @@
 {% block title %}Mi Proyecto{% endblock %}
 
 {% block body %}
-
-<div class="container-fluid">
-    <h1>Mi proyecto</h1>
+    {# <h1>Mi proyecto</h1> #}
     {% if proyecto|length == 0 %}
-        <h4>Aun no tienes un proyecto</h4>
-        <a class="" href="{{ path('crear_proyecto') }}">Nuevo proyecto!</a>
+        <div class="proyect-container">
+            <div class="proyect-card">
+                <div class="proyect-left-column bg-left-column"></div>
+                <div class="proyect-right-column">
+                    <h2>Aun no tienes un proyecto</h2>
+                    <div class="proyect-btns">
+                        {# <a class="" href="{{ path('crear_proyecto') }}">Nuevo proyecto!</a> #}
+                        <input type="button" value="Nuevo proyecto!" onclick="location.href='{{ path('crear_proyecto') }}'" class="proyect-btn"> 
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
     {% else %}
         {% for pro in proyecto %}
-            <h4>{{ pro.titulo }}</h4>
-            <h4>{{ pro.descripcion }}</h4>
-            <a href="{{ path('editar_proyecto', {'id':pro.id}) }}">Editar proyecto</a>
-            {% if pro.usuario.id == app.user.id %}
-                <a href="{{ path('borrar_proyecto', {'id':pro.id}) }}">Borrar proyecto</a>
-            {% endif %}
+            <div class="proyect-container">
+                <div class="proyect-card">
+                    <div class="proyect-left-column bg-left-column"></div>
+                    <div class="proyect-right-column">
+                        <h2>{{ pro.titulo }}</h2>
+                        <p>{{ pro.descripcion }}</p>
+                        <div class="proyect-btns">
+                            {# <button class="proyect-btn">Editar proyecto</button> #}
+                            <input type="button" value="Editar proyecto" onclick="location.href='{{ path('editar_proyecto', {'id':pro.id}) }}'" class="proyect-btn">
+                            {% if pro.usuario.id == app.user.id %}
+                            {# <button class="proyect-btn">Borrar</button>   #} 
+                            <input type="button" value="Borrar" onclick="location.href='{{ path('borrar_proyecto', {'id':pro.id}) }}'" class="proyect-btn"> 
+                            {% endif %}
+                        </div>            
+                    </div>
+                </div>    
+            </div>          
         {% endfor %}
     {% endif %}
-
-</div>
-
 {% endblock %}

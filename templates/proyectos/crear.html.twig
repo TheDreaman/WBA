@@ -11,17 +11,46 @@
 {% block body %}
 
 <div class="container-fluid">
-    <h1>
-    {% if edit is defined %}
-        Editar proyecto
-    {% else %}
-        Nuevo proyecto
-    {% endif %}
-    </h1>
 
-    {{ form_start(form) }}
+
+{#     {{ form_start(form) }}
     {{ form_widget(form) }}
+    {{ form_end(form) }} #}
+
+
+
+    <div class="pform-container-all">
+        <div class="pform-container">
+            <div class="pform-title">
+                {% if edit is defined %}
+                    Editar proyecto
+                {% else %}
+                    Nuevo proyecto
+                {% endif %}
+            </div>
+            {{ form_start(form) }}
+            <div class="pform-details">
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.titulo) }}</span>
+                    {{ form_errors(form.titulo) }}
+                    {{ form_widget(form.titulo) }}
+                    {{ form_help(form.titulo) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.descripcion) }}</span>
+                    {{ form_errors(form.descripcion) }}
+                    {{ form_widget(form.descripcion) }}
+                    {{ form_help(form.descripcion) }}
+                </div>
+                <div class="pform-button">
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+        </div> 
+    </div>
     {{ form_end(form) }}
+
+
 
 </div>
 

@@ -5,14 +5,65 @@
 {% block body %}
 
 <div class="container-fluid">
-    <h1>Pantalla de registro</h1>
 
     {% if bolError is defined %}
         <h5>{{ bolError }}</h5>
     {% endif %}
 
-    {{ form_start(form) }}
+    {# {{ form_start(form) }}
     {{ form_widget(form) }}
+    {{ form_end(form) }} #}
+
+
+    <div class="pform-container-all">
+        <div class="pform-container">
+            <div class="pform-title">Registro</div>
+            {{ form_start(form) }}
+            <div class="pform-details">
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.bolMat) }}</span>
+                    {{ form_errors(form.bolMat) }}
+                    {{ form_widget(form.bolMat) }}
+                    {{ form_help(form.bolMat) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.nombre) }}</span>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                    {{ form_help(form.nombre) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.apePat) }}</span>
+                    {{ form_errors(form.apePat) }}
+                    {{ form_widget(form.apePat) }}
+                    {{ form_help(form.apePat) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.apeMat) }}</span>
+                    {{ form_errors(form.apeMat) }}
+                    {{ form_widget(form.apeMat) }}
+                    {{ form_help(form.apeMat) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.pass) }}</span>
+                    {{ form_errors(form.pass) }}
+                    {{ form_widget(form.pass) }}
+                    {{ form_help(form.pass) }}
+                </div>
+                <div class="pform-input">
+                    <span class="pform-input-details">{{ form_label(form.email) }}</span>
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_help(form.email) }}
+                </div>
+                <div class="pform-button">
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+        </div> 
+    </div>
     {{ form_end(form) }}
+
+
 </div>
 {% endblock %}

@@ -13,56 +13,57 @@
 
     <div class="row">
         <div class="col-1 pb-2">
-            <img src="{{ asset('assets/images/esime.png') }}" style="width: 80px;" class="" alt="">
+            <img src="{{ asset('assets/images/esime.png') }}" class="home-header-img" alt="">
         </div>
         <div class="col-11 pl-0">
-            <h1 class="font-title">Sitio web para la busquedea de asesor <br>
+            <h1 class="home-header-text">Sitio web para la busquedea de asesor <br>
             en la carrera de Ingenieria en computación</h1>
         </div>                      
     </div>                            
 
-    
-    
-
-    {# {% for usuario in usuarios %}
-        <div class="row">
-            <div class="col-9">
-                
-            </div>
-            {% for i in 1..5 %}
-                {{ i ~ random_users}}
-            {% endfor %}
-        </div>
-        <a class="btn-link" type="" href="#">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}<br></a>
-    {% endfor %} #}
     <div class="row">
         <div class="col-9">
             {% for usuario in usuarios %}
                 {% if usuario.rol == 'ROLE_USERD' %}
-                    <div class="row pb-4"></div>
-                    <div class="row rounded-lg shadow-sm">            
-                        <div class="col-2">
-                            <img src="{{ asset('assets/images/user.png') }}" style="width: 100px;" class="mx-4" alt="">  
-                        </div>
-                        <div class="col-10">
-                            <a class="font-weight-bold" href="{{ path('perfil_ver', {'id':usuario.id}) }}">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}</a>
-                            <p class="" style="font-size: 13px;">                               
-                                Estudios: {{ usuario.estudios }} <br>
-                                Proyectos: {{ usuario.proyectosHistory }}</p>
-                        </div>
-                    </div> 
+
+                    <div class="kard-container">      
+                        <a class="" href="{{ path('perfil_ver', {'id':usuario.id}) }}">                                      
+                        <div class="kard">
+                            <div class="kard-img">
+                                <img src="{{ asset('assets/images/user.png') }}" class="" alt="">  
+                            </div>
+                            <div class="kard-content">
+                                {# <a class="text-home-title" href="{{ path('perfil_ver', {'id':usuario.id}) }}">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}</a> #}
+                                <p class="kard-title">{{ usuario.nombre ~ ' ' ~ usuario.apePat ~ ' ' ~ usuario.apeMat}}</p>
+                                <p class="kard-p">                               
+                                    Estudios: {{ usuario.estudios }} <br>
+                                    Proyectos: {{ usuario.proyectosHistory }}</p>
+                            </div>
+                        </div> 
+                    </div>
+                        </a>
                 {% endif %}
             {% endfor %}
         </div>
+
         <div class="col-3">
             <div class="row">
                 <div class="col">
                     {% for random in random_users %}
                     {# {% for random in random_users|slice(1,4) %} #}
                         {% if random.rol == 'ROLE_USERD' %}
-                            <div class="p-2">
-                                <a href="{{ path('perfil_ver', {'id':random.id}) }}" class=""><img src="{{ asset('assets/images/user.png') }}" style="width: 30px;" class="" alt="">    {{ random.nombre ~ ' ' ~ random.apePat ~ ' ' ~ random.apeMat }}<br></a>
-                            </div>                        
+                            <div class="minikard-container">
+                                <a href="{{ path('perfil_ver', {'id':random.id}) }}" class="no-decoration">
+                                <div class="minikard">
+                                    <div class="minikard-img">
+                                        <img src="{{ asset('assets/images/user.png') }}">
+                                    </div>
+                                    <div class="minikard-content">                                        
+                                        <p> {{ random.nombre ~ ' ' ~ random.apePat ~ ' ' ~ random.apeMat }} <br></p>
+                                    </div>                                    
+                                </div>                                
+                            </div>  
+                            </a>                      
                             {# <a class="btn-link" type="" href="#">{{ random.nombre ~ ' ' ~ random.apePat ~ random.apeMat }}<br></a> #}
                         {% endif %}
                     {% endfor %}                

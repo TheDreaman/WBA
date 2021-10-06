@@ -12,20 +12,67 @@
 
 <div class="container-fluid">
 
-    <h1>
+{#     <h1>
     {% if edit is defined %}
         {{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}
     {% else %}
         {{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}
     {% endif %}    
-    </h1>
+    </h1> #}
+
+    
 
     {% if form is defined %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
+        <div class="pform-container-all">
+            <div class="pform-container">
+                <div class="pform-title">Editar</div>
+                {{ form_start(form) }}
+                <div class="pform-details">
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.cel) }}</span>
+                        {{ form_errors(form.cel) }}
+                        {{ form_widget(form.cel) }}
+                        {{ form_help(form.cel) }}
+                    </div>
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.descripcion) }}</span>
+                        {{ form_errors(form.descripcion) }}
+                        {{ form_widget(form.descripcion) }}
+                        {{ form_help(form.descripcion) }}
+                    </div>
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.estudios) }}</span>
+                        {{ form_errors(form.estudios) }}
+                        {{ form_widget(form.estudios) }}
+                        {{ form_help(form.estudios) }}
+                    </div>
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.acadmy) }}</span>
+                        {{ form_errors(form.acadmy) }}
+                        {{ form_widget(form.acadmy) }}
+                        {{ form_help(form.acadmy) }}
+                    </div>
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.disponible) }}</span>
+                        {{ form_errors(form.disponible) }}
+                        {{ form_widget(form.disponible) }}
+                        {{ form_help(form.disponible) }}
+                    </div>
+                    <div class="pform-input">
+                        <span class="pform-input-details">{{ form_label(form.lugarAt) }}</span>
+                        {{ form_errors(form.lugarAt) }}
+                        {{ form_widget(form.lugarAt) }}
+                        {{ form_help(form.lugarAt) }}
+                    </div>
+                    <div class="pform-button">
+                        {{ form_row(form.submit) }}
+                    </div>
+                </div>
+            </div> 
+        </div>
         {{ form_end(form) }}
     {% else %}
-        <h3>Foto</h3>
+{#         <h3>Foto</h3>
         <h3>Email</h3>
         <p>{{ users.email }}</p>
         <h3>Celular</h3>
@@ -45,13 +92,93 @@
         <h3>Lugar de atención</h3>
         <p>{{ users.lugarAt }}</p>
         <h3>Proyectos anteriores</h3>
-        <p>{{ users.proyectosHistory }}</p>    
+        <p>{{ users.proyectosHistory }}</p>    #} 
+
+        <div class="perfil-container">
+        <div class="perfil-header">
+            <div class="perfil-img">
+                <img src="{{ asset('assets/images/user.png') }}" class="" alt="">  
+            </div>
+            <div class="perfil-name">{{ users.nombre ~ ' ' ~ users.apePat ~ ' ' ~ users.apeMat }}</div>
+        </div>
+        <div class="perfil-footer">
+            <div class="perfil-titles">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Descripción</span>
+                            <p>{{ users.descripcion }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Academia</span>
+                            <p>{{ users.acadmy }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Email</span>
+                            <p>{{ users.email }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Disponibilidad</span>
+                            <p> {% if users.disponible == true %}
+                                Disponible
+                                {% else %}
+                                No disponible
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Celular</span>
+                            <p>{{ users.cel }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Lugar de atención</span>
+                            <p>{{ users.lugarAt }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Estudios</span>
+                            <p>{{ users.estudios }}</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="perfil-item">
+                            <span>Proyectos anteriores</span>
+                            <p>{{ users.proyectosHistory }}</p>
+                        </div>
+                    </div>
+                </div>          
+                
+            </div>
+        </div>
+
     {% endif %}
     
     {% if users.id == app.user.id and edit is not defined %}
-        <a href="{{ path('perfil_editar', {'id':users.id}) }}">Editar perfil</a>        
-    {% endif %}            
+        <a href="{{ path('perfil_editar', {'id':users.id}) }}" class="perfil-edit">Editar perfil</a>        
+    {% endif %}   
 
+        </div>
 </div>
 
 
