@@ -581,13 +581,7 @@ textarea, select{
 }
 
 .proyect-btn{
-	/*border-radius: 3rem;
-	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-	color: #fff;
-	font-size: 15px;
-	padding: 10px 20px;
-	letter-spacing: 1px;
-	align-self: flex-end;*/
+
 	display: inline-block;
 	text-decoration: none;
 	padding: 8px 20px;
