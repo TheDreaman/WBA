@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         $this->requestStack = $requestStack;
     }
 
-    public function index(): Response
+    public function index(Request $req)
     {   
         //Rechaza cualquier conexión que no sea de un rol de usuario
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'Debes ser usuario registrado para ver el contenido');        
@@ -27,12 +27,68 @@ class HomeController extends AbstractController
 
         $usuario_repo = $this -> getDoctrine()->getRepository(Usuario::class);
         $usuarios = $usuario_repo -> findAll();
+        $rndm_users = $usuario_repo -> findBy(['rol' => 'ROLE_USERD']);
+        shuffle($rndm_users);
+
+        /*$usuarios = $usuario_repo -> findAll();
         $rndm_users = $usuario_repo -> findAll();
-        shuffle($rndm_users);  /* NOTA: FUNCIONA BIEN EN ARRAYS NO MAYORES A 10K, DESPUES COMIENZA A RETRASAR LA PAGINA  */
+        shuffle($rndm_users);*/  /* NOTA: FUNCIONA BIEN EN ARRAYS NO MAYORES A 10K, DESPUES COMIENZA A RETRASAR LA PAGINA  */
 
 
         /*var_dump($rndm_users);        */
-        
+
+
+
+        if($req -> isMethod('POST'))
+        {
+            $buscar = $req -> get('buscar');
+            $academia = $req -> get('academia');  
+            $apellido = $req -> get('apellido');            
+            /*var_dump($academia);*/
+
+            if (empty($apellido) && empty($academia) && !empty($buscar)) {
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['nombre' => $buscar]);
+            }
+            elseif (empty($apellido) && !empty($academia) && empty($buscar)) {
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['acadmy' => $academia]);                  
+            }
+            elseif (empty($apellido) && !empty($academia) && !empty($buscar)) {
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['acadmy' => $academia, 'nombre' => $buscar]); 
+            }
+            elseif (!empty($apellido) && empty($academia) && empty($buscar)){
+                $asesor =  $em -> getRepository(Usuario::class)->findBy(['apePat' => $apellido]); 
+            }
+            elseif (!empty($apellido) && empty($academia) && !empty($buscar)){
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['apePat' => $apellido, 'nombre' => $buscar]); 
+            }
+            elseif (!empty($apellido) && !empty($academia) && empty($buscar)){
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['acadmy' => $academia, 'apePat' => $apellido]);
+            }
+            elseif (!empty($apellido) && !empty($academia) && !empty($buscar)){
+                $asesor = $em -> getRepository(Usuario::class)->findBy(['apePat' => $apellido, 'nombre' => $buscar, 'acadmy' => $academia]);    
+            }
+            else{
+                return $this->render('home/index.html.twig', [
+                    'usuarios' => $usuarios,
+                    'random_users' => $rndm_users,
+                ]);
+            }
+
+            
+            return $this->render('home/index.html.twig', [
+                'usuarios' => $asesor,
+                'random_users' => $rndm_users,
+            ]);   
+        }
+        /*
+        000
+        001
+        010
+        011
+        100
+        101
+        110
+        111*/
 
         /*$my_array = array("red","green","blue","yellow","purple");
         shuffle($my_array);
@@ -52,5 +108,22 @@ class HomeController extends AbstractController
             'usuarios' => $usuarios,
             'random_users' => $rndm_users,
         ]);
+    }
+
+    public function buscaNombre(Request $req){
+        $em = $this ->  getDoctrine()->getManager();
+        $asesor = $em -> getRepository(Usuario::class)->findAll();
+        if($req -> isMethod('POST'))
+        {
+            $buscar = $req -> get('buscar');            
+            $asesor = $em -> getRepository(Usuario::class)->findBy(array('nombre' => $buscar));
+        }
+
+        /*var_dump($asesor);*/
+
+        return $this->render('home/index.html.twig', [
+            'usuarios' => $asesor,
+            'random_users' => $asesor,
+        ]);    
     }
 }

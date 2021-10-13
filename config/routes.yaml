@@ -9,6 +9,10 @@ index:
     path: /
     controller: App\Controller\HomeController::index
 
+busqueda:
+    path: /busqueda
+    controller: App\Controller\HomeController::buscaNombre
+
 proyectos:
     path: /proyectos
     controller: App\Controller\ProyectosController::index
